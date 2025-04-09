@@ -1,0 +1,113 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct CartaPais {
+    string nome;
+    int populacao;
+    float area;
+    float pib;
+    int pontosTuristicos;
+    float densidadeDemografica;
+};
+
+void mostrarCarta(const CartaPais& carta) {
+    cout << "País: " << carta.nome << endl;
+    cout << "População: " << carta.populacao << endl;
+    cout << "Área: " << carta.area << " km²" << endl;
+    cout << "PIB: US$ " << carta.pib << " trilhões" << endl;
+    cout << "Pontos turísticos: " << carta.pontosTuristicos << endl;
+    cout << "Densidade demográfica: " << carta.densidadeDemografica << " hab/km²" << endl;
+}
+
+int main() {
+    // Exemplo de duas cartas cadastradas
+    CartaPais carta1 = {"Brasil", 214000000, 8516000.0f, 1.9f, 15, 25.1f};
+    CartaPais carta2 = {"Japão", 125000000, 377975.0f, 5.1f, 30, 330.8f};
+
+    int opcao;
+
+    cout << "=== SUPER TRUNFO - CARTAS DE PAISES ===\n";
+    cout << "Escolha o atributo para comparar:\n";
+    cout << "1 - População\n";
+    cout << "2 - Área\n";
+    cout << "3 - PIB\n";
+    cout << "4 - Pontos Turísticos\n";
+    cout << "5 - Densidade Demográfica\n";
+    cout << "Digite a opção: ";
+    cin >> opcao;
+
+    cout << "\nCarta 1:\n";
+    mostrarCarta(carta1);
+    cout << "\nCarta 2:\n";
+    mostrarCarta(carta2);
+    cout << "\n--- Resultado da Comparação ---\n";
+
+    switch (opcao) {
+        case 1:
+            cout << "Atributo: População\n";
+            cout << carta1.nome << ": " << carta1.populacao << "\n";
+            cout << carta2.nome << ": " << carta2.populacao << "\n";
+            if (carta1.populacao > carta2.populacao)
+                cout << "Vencedor: " << carta1.nome << "!\n";
+            else if (carta1.populacao < carta2.populacao)
+                cout << "Vencedor: " << carta2.nome << "!\n";
+            else
+                cout << "Empate!\n";
+            break;
+
+        case 2:
+            cout << "Atributo: Área\n";
+            cout << carta1.nome << ": " << carta1.area << "\n";
+            cout << carta2.nome << ": " << carta2.area << "\n";
+            if (carta1.area > carta2.area)
+                cout << "Vencedor: " << carta1.nome << "!\n";
+            else if (carta1.area < carta2.area)
+                cout << "Vencedor: " << carta2.nome << "!\n";
+            else
+                cout << "Empate!\n";
+            break;
+
+        case 3:
+            cout << "Atributo: PIB\n";
+            cout << carta1.nome << ": " << carta1.pib << "\n";
+            cout << carta2.nome << ": " << carta2.pib << "\n";
+            if (carta1.pib > carta2.pib)
+                cout << "Vencedor: " << carta1.nome << "!\n";
+            else if (carta1.pib < carta2.pib)
+                cout << "Vencedor: " << carta2.nome << "!\n";
+            else
+                cout << "Empate!\n";
+            break;
+
+        case 4:
+            cout << "Atributo: Pontos Turísticos\n";
+            cout << carta1.nome << ": " << carta1.pontosTuristicos << "\n";
+            cout << carta2.nome << ": " << carta2.pontosTuristicos << "\n";
+            if (carta1.pontosTuristicos > carta2.pontosTuristicos)
+                cout << "Vencedor: " << carta1.nome << "!\n";
+            else if (carta1.pontosTuristicos < carta2.pontosTuristicos)
+                cout << "Vencedor: " << carta2.nome << "!\n";
+            else
+                cout << "Empate!\n";
+            break;
+
+        case 5:
+            cout << "Atributo: Densidade Demográfica (quanto menor, melhor)\n";
+            cout << carta1.nome << ": " << carta1.densidadeDemografica << "\n";
+            cout << carta2.nome << ": " << carta2.densidadeDemografica << "\n";
+            if (carta1.densidadeDemografica < carta2.densidadeDemografica)
+                cout << "Vencedor: " << carta1.nome << "!\n";
+            else if (carta1.densidadeDemografica > carta2.densidadeDemografica)
+                cout << "Vencedor: " << carta2.nome << "!\n";
+            else
+                cout << "Empate!\n";
+            break;
+
+        default:
+            cout << "Opção inválida. Por favor, escolha um número de 1 a 5.\n";
+            break;
+    }
+
+    return 0;
+}
