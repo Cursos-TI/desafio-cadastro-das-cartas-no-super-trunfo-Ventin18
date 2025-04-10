@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <string.h>
+
+// Estrutura que representa uma carta de país
+struct CartaPais {
+    char nome[50];
+    int populacao;
+    float area;
+    float pib;
+    int pontosTuristicos;
+    float densidadeDemografica;
+};
+
+// Função para comparar os atributos
+void comparar(char atributo[], char nome1[], char nome2[], float valor1, float valor2, int menorVence) {
+    printf("\nComparando atributo: %s\n", atributo);
+    printf("%s - %s: %.2f\n", nome1, atributo, valor1);
+    printf("%s - %s: %.2f\n", nome2, atributo, valor2);
+
+    if (valor1 == valor2) {
+        printf("Resultado: Empate!\n");
+    } else if ((valor1 > valor2 && !menorVence) || (valor1 < valor2 && menorVence)) {
+        printf("Resultado: %s venceu!\n", nome1);
+    } else {
+        printf("Resultado: %s venceu!\n", nome2);
+    }
+}
+
+int main() {
+    // Cartas fixas
+    struct CartaPais carta1 = {"Brasil", 213000000, 8515767.0, 1.84, 45, 0};
+    struct CartaPais carta2 = {"Canadá", 38000000, 9984670.0, 1.64, 30, 0};
+
+    // Cálculo das densidades demográficas
+    carta1.densidadeDemografica = carta1.populacao / carta1.area;
+    carta2.densidadeDemografica = carta2.populacao / carta2.area;
+
+    int opcao;
+
+    // Exibição do menu
+    printf("=== SUPER TRUNFO: CARTAS DE PAÍSES ===\n\n");
+    printf("Escolha o atributo para comparar:\n");
+    printf("1 - População\n");
+    printf("2 - Área\n");
+    printf("3 - PIB\n");
+    printf("4 - Pontos Turísticos\n");
+    printf("5 - Densidade Demográfica\n");
+    printf("\nDigite sua opção: ");
+    scanf("%d", &opcao);
+
+    // Switch com comparação
+    switch (opcao) {
+        case 1:
+            comparar("População", carta1.nome, carta2.nome,
+                     (float)carta1.populacao, (float)carta2.populacao, 0);
+            break;
+        case 2:
+            comparar("Área", carta1.nome, carta2.nome,
+                     carta1.area, carta2.area, 0);
+            break;
+        case 3:
+            comparar("PIB", carta1.nome, carta2.nome,
+                     carta1.pib, carta2.pib, 0);
+            break;
+        case 4:
+            comparar("Pontos Turísticos", carta1.nome, carta2.nome,
+                     (float)carta1.pontosTuristicos, (float)carta2.pontosTuristicos, 0);
+            break;
+        case 5:
+            comparar("Densidade Demográfica", carta1.nome, carta2.nome,
+                     carta1.densidadeDemografica, carta2.densidadeDemografica, 1);
+            break;
+        default:
+            printf("Opção inválida! Tente novamente.\n");
+            break;
+    }
+
+    return 0;
+}
